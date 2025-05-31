@@ -1,6 +1,8 @@
+
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
+import { Link } from "react-router-dom";
 import { ArrowRight, Shield, FileText, Zap, Image, Crop, Palette } from "lucide-react";
 
 export const HeroSection = () => {
@@ -55,9 +57,9 @@ export const HeroSection = () => {
                 className="w-full sm:w-auto px-8 py-6 rounded-xl bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 transition-all duration-200"
                 asChild
               >
-                <a href="/about">
+                <Link to="/about">
                   Learn More
-                </a>
+                </Link>
               </Button>
             </div>
             

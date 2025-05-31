@@ -48,6 +48,7 @@ const Format = () => {
               </div>
               <div className="space-y-6">
                 <FormatControls
+                  originalImage={originalImage}
                   onImageProcessed={handleImageProcessed}
                   onProcessingStart={handleProcessingStart}
                   onReset={() => {

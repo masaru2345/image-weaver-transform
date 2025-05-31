@@ -11,7 +11,6 @@ const Crop = () => {
   const [processedImage, setProcessedImage] = useState<ProcessedImage | null>(null);
   const [isProcessing, setIsProcessing] = useState(false);
   const [cropOptions, setCropOptions] = useState<CropOptions | undefined>(undefined);
-  const [enableCrop, setEnableCrop] = useState(false);
 
   const handleImageUpload = useCallback((file: File) => {
     setOriginalImage(file);
@@ -25,7 +24,7 @@ const Crop = () => {
     try {
       const settings = {
         conversion: { format: 'jpeg' as const, quality: 90 },
-        crop: enableCrop ? cropOptions : undefined
+        crop: cropOptions
       };
 
       const result = await optimizeImage(originalImage, settings);
@@ -63,16 +62,13 @@ const Crop = () => {
               </div>
               <div className="space-y-6">
                 <CropControls
-                  originalImage={originalImage}
                   cropOptions={cropOptions}
-                  enableCrop={enableCrop}
                   onCropOptionsChange={setCropOptions}
-                  onEnableCropChange={setEnableCrop}
                 />
                 <div className="flex gap-3">
                   <button
                     onClick={handleProcessImage}
-                    disabled={isProcessing || !originalImage || !enableCrop || !cropOptions}
+                    disabled={isProcessing || !originalImage || !cropOptions}
                     className="flex-1 bg-gradient-to-r from-green-500 to-emerald-600 text-white py-3 px-6 rounded-xl font-semibold hover:from-green-600 hover:to-emerald-700 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-300"
                   >
                     {isProcessing ? 'Processing...' : 'Crop Image'}
@@ -82,7 +78,6 @@ const Crop = () => {
                       setOriginalImage(null);
                       setProcessedImage(null);
                       setCropOptions(undefined);
-                      setEnableCrop(false);
                     }}
                     className="px-6 py-3 border border-gray-300 dark:border-gray-600 rounded-xl font-semibold text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors"
                   >

@@ -1,18 +1,51 @@
-import React from 'react';
+
+import React, { useState } from 'react';
+import { Button } from '@/components/ui/button';
 import { Slider } from '@/components/ui/slider';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Label } from '@/components/ui/label';
-import { ConversionOptions } from '../types/image';
+import { ConversionOptions, ProcessedImage } from '../types/image';
+import { optimizeImage } from '../utils/imageOptimizer';
 
 interface FormatControlsProps {
-  conversionOptions: ConversionOptions;
-  onConversionOptionsChange: (options: ConversionOptions) => void;
+  originalImage: File | null;
+  onImageProcessed: (processed: ProcessedImage) => void;
+  onProcessingStart: () => void;
+  onReset: () => void;
 }
 
 export const FormatControls: React.FC<FormatControlsProps> = ({
-  conversionOptions,
-  onConversionOptionsChange
+  originalImage,
+  onImageProcessed,
+  onProcessingStart,
+  onReset
 }) => {
+  const [conversionOptions, setConversionOptions] = useState<ConversionOptions>({
+    format: 'webp',
+    quality: 80
+  });
+  const [isProcessing, setIsProcessing] = useState(false);
+
+  const handleProcessImage = async () => {
+    if (!originalImage) return;
+
+    onProcessingStart();
+    setIsProcessing(true);
+    
+    try {
+      const settings = {
+        conversion: conversionOptions
+      };
+
+      const result = await optimizeImage(originalImage, settings);
+      onImageProcessed(result);
+    } catch (error) {
+      console.error('Processing failed:', error);
+    } finally {
+      setIsProcessing(false);
+    }
+  };
+
   const getQualityConfig = () => {
     switch (conversionOptions.format) {
       case 'avif':
@@ -40,7 +73,7 @@ export const FormatControls: React.FC<FormatControlsProps> = ({
         <Select
           value={conversionOptions.format}
           onValueChange={(value: 'webp' | 'avif' | 'jpeg' | 'png') =>
-            onConversionOptionsChange({ ...conversionOptions, format: value })
+            setConversionOptions({ ...conversionOptions, format: value })
           }
         >
           <SelectTrigger className="w-full bg-white dark:bg-gray-700 border-gray-200 dark:border-gray-600 rounded-lg hover:border-purple-300 dark:hover:border-purple-500 focus:border-purple-400 dark:focus:border-purple-400 transition-colors duration-300 text-gray-900 dark:text-white">
@@ -90,7 +123,7 @@ export const FormatControls: React.FC<FormatControlsProps> = ({
           <Slider
             value={[conversionOptions.quality]}
             onValueChange={([value]) =>
-              onConversionOptionsChange({ ...conversionOptions, quality: value })
+              setConversionOptions({ ...conversionOptions, quality: value })
             }
             max={qualityConfig.max}
             min={qualityConfig.min}
@@ -146,6 +179,24 @@ export const FormatControls: React.FC<FormatControlsProps> = ({
             </p>
           )}
         </div>
+      </div>
+
+      {/* Action Buttons */}
+      <div className="flex gap-3">
+        <Button
+          onClick={handleProcessImage}
+          disabled={isProcessing || !originalImage}
+          className="flex-1 bg-gradient-to-r from-purple-500 to-pink-600 text-white py-3 px-6 rounded-xl font-semibold hover:from-purple-600 hover:to-pink-700 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-300"
+        >
+          {isProcessing ? 'Converting...' : 'Convert Image'}
+        </Button>
+        <Button
+          onClick={onReset}
+          variant="outline"
+          className="px-6 py-3 border border-gray-300 dark:border-gray-600 rounded-xl font-semibold text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors"
+        >
+          Reset
+        </Button>
       </div>
     </div>
   );

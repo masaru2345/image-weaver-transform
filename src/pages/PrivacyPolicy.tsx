@@ -1,5 +1,5 @@
-import Header from "@/components/Header";
-import Footer from "@/components/Footer";
+import { Link } from "react-router-dom";
+import { Footer } from "@/components/Footer";
 import { Shield, Lock, Eye, FileCheck, UserCheck, Bell } from "lucide-react";
 
 const PrivacyPolicy = () => {
@@ -150,9 +150,9 @@ const PrivacyPolicy = () => {
           <div className="bg-gradient-to-r from-sky-600 to-blue-600 rounded-2xl shadow-xl p-12 text-white text-center">
             <h2 className="text-3xl md:text-4xl font-bold mb-6">Questions or Concerns?</h2>
             <p className="text-white/90 mb-8 text-lg">If you have any questions about this Privacy Policy or our data practices, please don't hesitate to reach out to us.</p>
-            <a href="/contact" className="inline-flex items-center px-8 py-4 bg-white hover:bg-gray-100 text-sky-600 rounded-lg transition-colors font-medium shadow-md">
+            <Link to="/contact" className="inline-flex items-center px-8 py-4 bg-white hover:bg-gray-100 text-sky-600 rounded-lg transition-colors font-medium shadow-md">
               Contact Us
-            </a>
+            </Link>
           </div>
         </div>
       </main>

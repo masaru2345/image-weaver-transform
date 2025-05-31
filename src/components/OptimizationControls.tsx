@@ -1,3 +1,4 @@
+
 import React, { useState, useCallback } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
@@ -113,10 +114,10 @@ export const OptimizationControls: React.FC<OptimizationControlsProps> = ({
             <TabsContent value="format" className="mt-4">
               <div className="p-3 bg-gray-50 dark:bg-gray-700/50 rounded-lg border border-gray-200 dark:border-gray-600">
                 <FormatControls
-                  conversionOptions={settings.conversion}
-                  onConversionOptionsChange={(conversion) => 
-                    setSettings(prev => ({ ...prev, conversion }))
-                  }
+                  originalImage={originalImage}
+                  onImageProcessed={onImageProcessed}
+                  onProcessingStart={onProcessingStart}
+                  onReset={onReset}
                 />
               </div>
             </TabsContent>

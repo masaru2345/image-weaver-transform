@@ -11,6 +11,7 @@ const Crop = () => {
   const [processedImage, setProcessedImage] = useState<ProcessedImage | null>(null);
   const [isProcessing, setIsProcessing] = useState(false);
   const [cropOptions, setCropOptions] = useState<CropOptions | undefined>(undefined);
+  const [enableCrop, setEnableCrop] = useState(true);
 
   const handleImageUpload = useCallback((file: File) => {
     setOriginalImage(file);
@@ -62,7 +63,10 @@ const Crop = () => {
               </div>
               <div className="space-y-6">
                 <CropControls
+                  originalImage={originalImage}
                   cropOptions={cropOptions}
+                  enableCrop={enableCrop}
+                  onEnableCropChange={setEnableCrop}
                   onCropOptionsChange={setCropOptions}
                 />
                 <div className="flex gap-3">

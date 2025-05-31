@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
@@ -20,10 +19,11 @@ const Header = () => {
   }, []);
 
   const navigation = [
-    { path: '/', label: 'Optimizer' },
+    { path: '/', label: 'Home' },
+    { path: '/format', label: 'Format' },
+    { path: '/resize', label: 'Resize' },
+    { path: '/crop', label: 'Crop' },
     { path: '/about', label: 'About' },
-    { path: '/privacy', label: 'Privacy' },
-    { path: '/terms', label: 'Terms' },
     { path: '/contact', label: 'Contact' }
   ];
 

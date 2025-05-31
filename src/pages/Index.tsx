@@ -6,27 +6,21 @@ import { Badge } from "@/components/ui/badge";
 import { FileImage, Crop, Maximize } from "lucide-react";
 
 const Index = () => {
-  const formatTools = [
+  const imageTools = [
     {
-      title: "WebP Converter",
+      title: "Format Converter",
       description: "Convert images to WebP format for better compression and web performance",
       icon: <FileImage className="w-6 h-6" />,
       href: "/format",
       gradient: "from-purple-500 to-pink-600"
-    }
-  ];
-
-  const resizeTools = [
+    },
     {
       title: "Smart Resize",
       description: "Resize images while maintaining aspect ratio and quality",
       icon: <Maximize className="w-6 h-6" />,
       href: "/resize", 
       gradient: "from-blue-500 to-cyan-600"
-    }
-  ];
-
-  const cropTools = [
+    },
     {
       title: "Precision Crop",
       description: "Crop images with precise control and real-time preview",
@@ -40,63 +34,21 @@ const Index = () => {
     <div className="min-h-screen">
       <HeroSection />
       
-      {/* Format Tools Section */}
+      {/* Image Tools Section */}
       <section className="py-20 bg-background">
         <div className="container">
           <div className="text-center mb-16">
             <Badge variant="outline" className="mb-2 border-primary-500 text-primary-600 font-medium">
-              Format Conversion
+              Image Tools
             </Badge>
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">Format Tool</h2>
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">Powerful Image Processing</h2>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              Convert your images to modern formats like WebP and AVIF for better performance
+              Convert, resize, and crop your images with professional-grade tools
             </p>
           </div>
           
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-            {formatTools.map((tool, index) => (
-              <ToolCard key={index} {...tool} compact={true} />
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Resize Tools Section */}
-      <section className="py-20 bg-secondary/20">
-        <div className="container">
-          <div className="text-center mb-16">
-            <Badge variant="outline" className="mb-2 border-primary-500 text-primary-600 font-medium">
-              Image Resizing
-            </Badge>
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">Resize Tool</h2>
-            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              Resize your images to perfect dimensions while maintaining quality
-            </p>
-          </div>
-          
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-            {resizeTools.map((tool, index) => (
-              <ToolCard key={index} {...tool} compact={true} />
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Crop Tools Section */}
-      <section className="py-20 bg-background">
-        <div className="container">
-          <div className="text-center mb-16">
-            <Badge variant="outline" className="mb-2 border-primary-500 text-primary-600 font-medium">
-              Image Cropping
-            </Badge>
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">Crop Tool</h2>
-            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              Crop your images with precision to focus on what matters most
-            </p>
-          </div>
-          
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-            {cropTools.map((tool, index) => (
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
+            {imageTools.map((tool, index) => (
               <ToolCard key={index} {...tool} compact={true} />
             ))}
           </div>

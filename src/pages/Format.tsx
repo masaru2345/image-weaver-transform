@@ -1,4 +1,3 @@
-
 import React, { useState, useCallback } from 'react';
 import { ImageUploader } from '../components/ImageUploader';
 import { ImagePreview } from '../components/ImagePreview';
@@ -28,7 +27,7 @@ const Format = () => {
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-8">
             <h1 className="text-3xl sm:text-4xl font-bold mb-4">
-              <span className="bg-gradient-to-r from-purple-600 via-purple-500 to-pink-400 bg-clip-text text-transparent">Format Converter</span>
+              <span className="bg-gradient-to-r from-purple-600 via-purple-500 to-pink-400 bg-clip-text text-transparent">Convert</span>
             </h1>
             <p className="text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
               Convert your images to modern formats like WebP and AVIF with optimized compression

@@ -60,15 +60,13 @@ export const ResizeControls: React.FC<ResizeControlsProps> = ({
             <div className="p-2 bg-gray-50 dark:bg-gray-700/50 rounded-lg border border-gray-200 dark:border-gray-600">
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
                 {presets.map((preset) => (
-                  <Button
+                  <button
                     key={preset.name}
-                    variant={isPresetSelected(preset) ? "default" : "outline"}
-                    size="sm"
                     onClick={() => handlePresetSelect(preset)}
-                    className={`w-full text-xs justify-start h-auto py-2 px-3 flex-col items-start ${
+                    className={`w-full text-xs justify-start h-auto py-2 px-3 flex flex-col items-start rounded-md transition-colors ${
                       isPresetSelected(preset) 
                         ? "bg-blue-600 text-white hover:bg-blue-700" 
-                        : "bg-white dark:bg-gray-700 border-gray-200 dark:border-gray-600 hover:bg-blue-50 dark:hover:bg-blue-900/20 text-gray-900 dark:text-white"
+                        : "bg-white dark:bg-gray-700 border border-gray-200 dark:border-gray-600 hover:bg-blue-50 dark:hover:bg-blue-900/20 text-gray-900 dark:text-white"
                     }`}
                   >
                     <div className="font-medium text-xs">{preset.name}</div>
@@ -79,7 +77,7 @@ export const ResizeControls: React.FC<ResizeControlsProps> = ({
                     }`}>
                       {preset.width}×{preset.height}
                     </div>
-                  </Button>
+                  </button>
                 ))}
               </div>
             </div>
